@@ -9,22 +9,33 @@
             font-family: Impact;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
+            background-color: #121212; /* Dark mode default */
+            color: #e0e0e0; /* Dark mode default */
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body.light-mode {
+            background-color: #f4f4f4;
+            color: #333;
         }
 
         .profile-container {
-            background-color: #fff;
+            background-color: #2a2a2a; /* Dark mode default */
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             padding: 40px;
             text-align: center;
             width: 80%;
             max-width: 600px;
+            transition: background-color 0.3s ease;
+        }
+
+        .profile-container.light-mode {
+            background-color: #fff;
         }
 
         .profile-image {
@@ -47,31 +58,77 @@
 
         .profile-links a {
             display: inline-block;
-            background-color: #007bff;
-            color: #85ee23;
+            background-color: #424242; /* Dark mode default */
+            color: #b2ff59; /* Dark mode default */
             padding: 10px 20px;
             text-decoration: none;
             border-radius: 5px;
             margin: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         .profile-links a:hover {
             background-color: #0056b3;
+        }
+
+        .profile-links a.light-mode {
+            background-color: #007bff;
+            color: #85ee23;
+        }
+
+        .dark-mode-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 15px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .dark-mode-button:hover {
+            background-color: #555;
         }
     </style>
 </head>
 <body>
     <div class="profile-container">
         <img src="GHcat.jpeg" alt="GH Profile Picture" class="profile-image">
-        <h1 class="profile-name">Place Holder</h1>
+        <h1 class="profile-name">Welcome to my Brief Introduction Site</h1>
         <p class="profile-bio">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab earum doloremque libero quibusdam deleniti vitae, quod obcaecati numquam nobis commodi? Ipsa, neque dicta soluta a quasi et natus ratione atque..
+            <br>rn this's just a wasteland full of nothing meaningful just like life.<br><br>
+
+            “The mind is its own place, and in itself can make a heaven of hell, a hell of heaven..”<br>
+                                -Just a quote supposed to work as a place holder (by John Milton)
         </p>
         <div class="profile-links">
-            <a href="https://github.com/Patthh" target="_blank">GitHub</a>
-            <a href="https://linkedin.com/in/your-linkedin" target="_blank">LinkedIn</a>
-            <a href="https://your-website.com" target="_blank">Website</a>
+            <a href="https://github.com/Patthh" target="_blank">GitHub🐱</a>
+            <a href="linkedin.html" target="_blank">LinkedIn💼</a>
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">YT🎥</a>
         </div>
     </div>
+    <button class="dark-mode-button" onclick="toggleDarkMode()">Light Mode</button>
+
+    <script>
+        function toggleDarkMode() {
+            const body = document.body;
+            const container = document.querySelector('.profile-container');
+            const links = document.querySelectorAll('.profile-links a');
+            const button = document.querySelector('.dark-mode-button');
+
+            body.classList.toggle('light-mode');
+            container.classList.toggle('light-mode');
+            links.forEach(link => link.classList.toggle('light-mode'));
+
+            if (body.classList.contains('light-mode')) {
+                button.textContent = 'Dark Mode';
+            } else {
+                button.textContent = 'Light Mode';
+            }
+        }
+    </script>
 </body>
 </html>
