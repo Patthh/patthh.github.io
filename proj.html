@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Projects</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a1a1a, #0e0e0e);
+            color: #f0f0f0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            margin: 0;
+            overflow-x: hidden;
+            position: relative;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body.light-mode {
+            background: linear-gradient(135deg, #f4f4f4, #e0e0e0);
+            color: #333;
+        }
+
+        .navbar {
+            background-color: rgba(20, 20, 20, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: background-color 0.3s ease;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .navbar.light-mode {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .navbar-logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: #40E0D0;
+            text-shadow: 0 0 15px rgba(64, 224, 208, 0.7);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.light-mode .navbar-logo {
+            color: #008B8B;
+            text-shadow: 0 0 15px rgba(0, 139, 139, 0.3);
+        }
+
+        .navbar-logo:hover {
+            transform: scale(1.05);
+        }
+
+        .navbar-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar-links a {
+            color: #d4d4d4;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar-links a:hover {
+            color: #FF8C00;
+        }
+
+        .navbar.light-mode .navbar-links a {
+            color: #555;
+            text-shadow: none;
+        }
+
+        .navbar.light-mode .navbar-links a:hover {
+            color: #FF4500;
+        }
+
+        .navbar-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(90deg, transparent, rgba(64, 224, 208, 0.8), transparent);
+            transition: width 0.3s ease;
+        }
+
+        .navbar.light-mode .navbar-links a::after {
+            background: linear-gradient(90deg, transparent, rgba(255, 140, 0, 0.8), transparent);
+        }
+
+        .navbar-links a:hover::after {
+            width: 100%;
+        }
+
+        .navbar-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+        }
+
+        .navbar-toggle span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: #40E0D0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.light-mode .navbar-toggle span {
+            background-color: #008B8B;
+        }
+
+        .dark-mode-button {
+            padding: 0.7rem 1.5rem;
+            background: linear-gradient(135deg, #20B2AA, #40E0D0);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 139, 139, 0.5);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            outline: none;
+            margin-left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dark-mode-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .dark-mode-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(0, 139, 139, 0.7);
+        }
+
+        .dark-mode-button:hover::before {
+            transform: translateX(100%);
+        }
+
+        .dark-mode-button:active {
+            transform: translateY(-1px);
+        }
+
+        .light-mode .dark-mode-button {
+            background: linear-gradient(135deg, #FF8C00, #FF4500);
+        }
+
+        /* Main content */
+        .main-content {
+            margin-top: 100px;
+            padding: 20px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            z-index: 10;
+            position: relative;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #40E0D0;
+            text-shadow: 0 0 15px rgba(64, 224, 208, 0.7);
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .page-title::after {
+            content: '';
+            position: absolute;
+            width: 40%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, rgba(64, 224, 208, 0.8), transparent);
+            bottom: -10px;
+            left: 30%;
+        }
+
+        .light-mode .page-title {
+            color: #008B8B;
+            text-shadow: 0 0 15px rgba(0, 139, 139, 0.3);
+        }
+
+        .light-mode .page-title::after {
+            background: linear-gradient(90deg, transparent, rgba(255, 140, 0, 0.8), transparent);
+        }
+
+        /* Filter controls */
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-button {
+            padding: 8px 16px;
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(64, 224, 208, 0.3);
+            color: #d4d4d4;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .filter-button:hover {
+            background-color: rgba(64, 224, 208, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .filter-button.active {
+            background: linear-gradient(135deg, rgba(32, 178, 170, 0.3), rgba(64, 224, 208, 0.3));
+            color: #40E0D0;
+            border-color: #40E0D0;
+            box-shadow: 0 4px 12px rgba(64, 224, 208, 0.2);
+        }
+
+        .light-mode .filter-button {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(0, 139, 139, 0.3);
+            color: #555;
+        }
+
+        .light-mode .filter-button:hover {
+            background-color: rgba(0, 139, 139, 0.1);
+        }
+
+        .light-mode .filter-button.active {
+            background: linear-gradient(135deg, rgba(255, 140, 0, 0.2), rgba(255, 69, 0, 0.2));
+            color: #FF4500;
+            border-color: #FF8C00;
+            box-shadow: 0 4px 12px rgba(255, 140, 0, 0.2);
+        }
+
+        /* Projects grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .project-card {
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 40px rgba(64, 224, 208, 0.3);
+        }
+
+        .light-mode .project-card {
+            background: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .light-mode .project-card:hover {
+            box-shadow: 0 12px 40px rgba(255, 140, 0, 0.2);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.5s ease;
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.05);
+        }
+
+        .project-content {
+            padding: 20px;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #40E0D0;
+            text-shadow: 0 0 10px rgba(64, 224, 208, 0.5);
+        }
+
+        .light-mode .project-title {
+            color: #008B8B;
+            text-shadow: 0 0 10px rgba(0, 139, 139, 0.2);
+        }
+
+        .project-description {
+            color: #d4d4d4;
+            margin-bottom: 15px;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+
+        .light-mode .project-description {
+            color: #555;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .project-tag {
+            padding: 4px 10px;
+            background-color: rgba(64, 224, 208, 0.2);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #40E0D0;
+        }
+
+        .light-mode .project-tag {
+            background-color: rgba(255, 140, 0, 0.1);
+            color: #FF4500;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .project-link {
+            padding: 8px 16px;
+            background: linear-gradient(135deg, rgba(32, 178, 170, 0.7), rgba(64, 224, 208, 0.7));
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(64, 224, 208, 0.4);
+        }
+
+        .light-mode .project-link {
+            background: linear-gradient(135deg, rgba(255, 140, 0, 0.7), rgba(255, 69, 0, 0.7));
+        }
+
+        .light-mode .project-link:hover {
+            box-shadow: 0 5px 15px rgba(255, 140, 0, 0.4);
+        }
+
+        /* Background elements */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.15;
+            z-index: 1;
+        }
+
+        .orb-1 {
+            top: 10%;
+            left: 5%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, #20B2AA, transparent 70%);
+            animation: float 15s infinite alternate ease-in-out;
+        }
+
+        .orb-2 {
+            bottom: 15%;
+            right: 10%;
+            width: 280px;
+            height: 280px;
+            background: radial-gradient(circle, #FF8C00, transparent 70%);
+            animation: float 12s 1s infinite alternate-reverse ease-in-out;
+        }
+
+        .orb-3 {
+            top: 60%;
+            left: 10%;
+            width: 220px;
+            height: 220px;
+            background: radial-gradient(circle, #40E0D0, transparent 70%);
+            animation: float 18s 2s infinite alternate ease-in-out;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0);
+            }
+            50% {
+                transform: translate(30px, -30px);
+            }
+            100% {
+                transform: translate(-30px, 30px);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar-container {
+                padding: 15px 20px;
+            }
+            
+            .navbar-links {
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                flex-direction: column;
+                background: rgba(20, 20, 20, 0.8);
+                backdrop-filter: blur(10px);
+                padding: 20px;
+                gap: 15px;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                transform: translateY(-150%);
+                transition: transform 0.3s ease;
+                align-items: center;
+                z-index: 10;
+            }
+            
+            .navbar.light-mode .navbar-links {
+                background: rgba(255, 255, 255, 0.8);
+                backdrop-filter: blur(10px);
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            }
+            
+            .navbar-links.active {
+                transform: translateY(0);
+            }
+            
+            .navbar-toggle {
+                display: flex;
+            }
+            
+            .projects-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 20px;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar-logo {
+                font-size: 1.2rem;
+            }
+            
+            .main-content {
+                padding: 15px;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-title {
+                font-size: 1.8rem;
+            }
+            
+            .project-card {
+                margin-bottom: 20px;
+            }
+            
+            .filter-container {
+                flex-direction: row;
+                overflow-x: auto;
+                padding-bottom: 10px;
+                justify-content: flex-start;
+            }
+            
+            .filter-button {
+                flex-shrink: 0;
+            }
+        }
+
+        /* No projects message */
+        .no-projects-message {
+            text-align: center;
+            padding: 40px;
+            font-size: 1.2rem;
+            color: #d4d4d4;
+            background: rgba(20, 20, 20, 0.4);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            display: none;
+        }
+
+        .light-mode .no-projects-message {
+            color: #555;
+            background: rgba(255, 255, 255, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <!-- Background orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#" class="navbar-logo">
+                <span>Portfolio</span>
+            </a>
+            <div class="navbar-links">
+                <a href="#">Home</a>
+                <a href="#" class="active">Projects</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </div>
+            <button class="dark-mode-button">
+                <span class="mode-icon">🌓</span>
+                <span class="mode-text">Toggle Theme</span>
+            </button>
+            <div class="navbar-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main content -->
+    <div class="main-content">
+        <h1 class="page-title">My Projects</h1>
+        
+        <!-- Filter buttons -->
+        <div class="filter-container">
+            <button class="filter-button active" data-filter="all">All Projects</button>
+            <button class="filter-button" data-filter="web">Web Development</button>
+            <button class="filter-button" data-filter="design">UI/UX Design</button>
+            <button class="filter-button" data-filter="mobile">Mobile Apps</button>
+            <button class="filter-button" data-filter="ai">AI/ML</button>
+        </div>
+        
+        <!-- Projects grid -->
+        <div class="projects-grid">
+            <!-- Project 1 -->
+            <div class="project-card" data-category="web design">
+                <img src="/api/placeholder/400/320" alt="E-commerce Website" class="project-image" />
+                <div class="project-content">
+                    <h3 class="project-title">E-commerce Platform</h3>
+                    <p class="project-description">A fully responsive e-commerce website with shopping cart, payment integration, and admin dashboard.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">React</span>
+                        <span class="project-tag">Node.js</span>
+                        <span class="project-tag">MongoDB</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">View Demo</a>
+                        <a href="#" class="project-link">Source Code</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Project 2 -->
+            <div class="project-card" data-category="design">
+                <img src="/api/placeholder/400/320" alt="UI Kit Design" class="project-image" />
+                <div class="project-content">
+                    <h3 class="project-title">Modern UI Kit</h3>
+                    <p class="project-description">A comprehensive UI kit featuring over 200 components for web applications with dark/light themes.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Figma</span>
+                        <span class="project-tag">UI/UX</span>
+                        <span class="project-tag">Design System</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">View Project</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Project 3 -->
+            <div class="project-card" data-category="mobile">
+                <img src="/api/placeholder/400/320" alt="Fitness App" class="project-image" />
+                <div class="project-content">
+                    <h3 class="project-title">Fitness Tracker App</h3>
+                    <p class="project-description">A mobile application that tracks workouts, nutrition, and provides personalized fitness plans.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">React Native</span>
+                        <span class="project-tag">Firebase</span>
+                        <span class="project-tag">Redux</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">Case Study</a>
+                        <a href="#" class="project-link">App Store</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Project 4 -->
+            <div class="project-card" data-category="ai web">
+                <img src="/api/placeholder/400/320" alt="AI Chatbot" class="project-image" />
+                <div class="project-content">
+                    <h3 class="project-title">AI Customer Service Chatbot</h3>
+                    <p class="project-description">An intelligent chatbot that handles customer inquiries using natural language processing.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Python</span>
+                        <span class="project-tag">TensorFlow</span>
+                        <span class="project-tag">NLP</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">Demo</a>
+                        <a href="#" class="project-link">Documentation</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Project 5 -->
+            <div class="project-card" data-category="web">
+                <img src="/api/placeholder/400/320" alt="Dashboard" class="project-image" />
+                <div class="project-content">
+                    <h3 class="project-title">Analytics Dashboard</h3>
+                    <p class="project-description">A real-time analytics dashboard for monitoring business KPIs with customizable widgets.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Vue.js</span>
+                        <span class="project-tag">D3.js</span>
+                        <span class="project-tag">GraphQL</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">Live Demo</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Project 6 -->
+            <div class="project-card" data-category="mobile design">
+                <img src="/api/placeholder/400/320" alt="Travel App" class="project-image" />
+                <div class="project-content">
+                    <h3 class="project-title">Travel Planning App</h3>
+                    <p class="project-description">An app for planning trips with itinerary management, booking integration, and travel recommendations.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Flutter</span>
+                        <span class="project-tag">Dart</span>
+                        <span class="project-tag">Google Maps API</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">Case Study</a>
+                        <a href="#" class="project-link">Prototype</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- No projects message (shown when filters return no results) -->
+        <div class="no-projects-message">
+            No projects match the selected filter. Try a different category.
+        </div>
+    </div>
+
+    <script>
+        // Dark/Light mode toggle
+        const darkModeButton = document.querySelector('.dark-mode-button');
+        const body = document.body;
+        const navbar = document.querySelector('.navbar');
+        const profileContainer = document.querySelector('.profile-container');
+        const modeText = document.querySelector('.mode-text');
+        const modeIcon = document.querySelector('.mode-icon');
+
+        darkModeButton.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            navbar.classList.toggle('light-mode');
+            
+            // Check if profile container exists (it might not be on all pages)
+            if (profileContainer) {
+                profileContainer.classList.toggle('light-mode');
+            }
+            
+            // Update all cards
+            document.querySelectorAll('.project-card').forEach(card => {
+                card.classList.toggle('light-mode');
+            });
+            
+            // Update button text
+            if (body.classList.contains('light-mode')) {
+                modeText.textContent = 'Dark';
+                modeIcon.textContent = '🌙';
+            } else {
+                modeText.textContent = 'Light';
+                modeIcon.textContent = '☀️';
+            }
+            
+            // Save preference
+            const currentMode = body.classList.contains('light-mode') ? 'light' : 'dark';
+            localStorage.setItem('preferredMode', currentMode);
+        });
+
+        // Check for saved mode preference
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedMode = localStorage.getItem('preferredMode');
+            if (savedMode === 'light') {
+                body.classList.add('light-mode');
+                navbar.classList.add('light-mode');
+                
+                if (profileContainer) {
+                    profileContainer.classList.add('light-mode');
+                }
+                
+                document.querySelectorAll('.project-card').forEach(card => {
+                    card.classList.add('light-mode');
+                });
+                
+                modeText.textContent = 'Dark';
+                modeIcon.textContent = '🌙';
+            }
+        });
+
+        // Mobile navigation toggle
+        const navbarToggle = document.querySelector('.navbar-toggle');
+        const navbarLinks = document.querySelector('.navbar-links');
+
+        navbarToggle.addEventListener('click', () => {
+            navbarToggle.classList.toggle('active');
+            navbarLinks.classList.toggle('active');
+        });
+
+        // Filter functionality
+        const filterButtons = document.querySelectorAll('.filter-button');
+        const projectCards = document.querySelectorAll('.project-card');
+        const noProjectsMessage = document.querySelector('.no-projects-message');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active button
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                const filter = button.getAttribute('data-filter');
+                let visibleProjects = 0;
+                
+                projectCards.forEach(card => {
+                    const categories = card.getAttribute('data-category');
+                    
+                    if (filter === 'all' || categories.includes(filter)) {
+                        card.style.display = 'block';
+                        visibleProjects++;
+                        
+                        // Add a staggered animation
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 100 * visibleProjects);
+                    } else {
+                        card.style.display = 'none';
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                    }
+                });
+                
+                // Show/hide no projects message
+                if (visibleProjects === 0) {
+                    noProjectsMessage.style.display = 'block';
+                } else {
+                    noProjectsMessage.style.display = 'none';
+                }
+            });
+        });
+
+        // Animation on scroll
+        document.addEventListener('DOMContentLoaded', () => {
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            // Set initial state for projects (for animation)
+            projectCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                
+                // Staggered animation on page load
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                    card.style.transition = 'all 0.5s ease';
+                }, 100 * index);
+            });
+        });
+		// Intersection Observer for scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.2
+        });
+
+        // Observe all project cards for scroll animation
+        projectCards.forEach(card => {
+            observer.observe(card);
+        });
+
+        // Project search functionality
+        const searchInput = document.createElement('input');
+        searchInput.type = 'text';
+        searchInput.placeholder = 'Search projects...';
+        searchInput.className = 'search-input';
+        
+        // Insert search before filter container
+        const filterContainer = document.querySelector('.filter-container');
+        filterContainer.parentNode.insertBefore(searchInput, filterContainer);
+
+        // Style the search input
+        searchInput.style.padding = '10px 15px';
+        searchInput.style.margin = '0 auto 20px auto';
+        searchInput.style.display = 'block';
+        searchInput.style.width = '100%';
+        searchInput.style.maxWidth = '400px';
+        searchInput.style.borderRadius = '30px';
+        searchInput.style.border = '1px solid rgba(64, 224, 208, 0.3)';
+        searchInput.style.background = 'rgba(20, 20, 20, 0.6)';
+        searchInput.style.backdropFilter = 'blur(5px)';
+        searchInput.style.color = '#d4d4d4';
+        searchInput.style.outline = 'none';
+        searchInput.style.transition = 'all 0.3s ease';
+
+        // Update search input style when light mode changes
+        darkModeButton.addEventListener('click', () => {
+            if (body.classList.contains('light-mode')) {
+                searchInput.style.background = 'rgba(255, 255, 255, 0.6)';
+                searchInput.style.color = '#555';
+                searchInput.style.border = '1px solid rgba(255, 140, 0, 0.3)';
+            } else {
+                searchInput.style.background = 'rgba(20, 20, 20, 0.6)';
+                searchInput.style.color = '#d4d4d4';
+                searchInput.style.border = '1px solid rgba(64, 224, 208, 0.3)';
+            }
+        });
+
+        // Check initial mode for search input
+        if (body.classList.contains('light-mode')) {
+            searchInput.style.background = 'rgba(255, 255, 255, 0.6)';
+            searchInput.style.color = '#555';
+            searchInput.style.border = '1px solid rgba(255, 140, 0, 0.3)';
+        }
+
+        // Handle search functionality
+        searchInput.addEventListener('input', () => {
+            const searchTerm = searchInput.value.toLowerCase();
+            let visibleProjects = 0;
+
+            projectCards.forEach(card => {
+                const title = card.querySelector('.project-title').textContent.toLowerCase();
+                const description = card.querySelector('.project-description').textContent.toLowerCase();
+                const tags = Array.from(card.querySelectorAll('.project-tag')).map(tag => tag.textContent.toLowerCase());
+                
+                // Search in title, description, and tags
+                if (title.includes(searchTerm) || 
+                    description.includes(searchTerm) || 
+                    tags.some(tag => tag.includes(searchTerm))) {
+                    card.style.display = 'block';
+                    visibleProjects++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Show/hide no projects message
+            if (visibleProjects === 0) {
+                noProjectsMessage.style.display = 'block';
+                noProjectsMessage.textContent = `No projects match "${searchInput.value}". Try a different search term.`;
+            } else {
+                noProjectsMessage.style.display = 'none';
+            }
+        });
+
+        // Add more projects dynamically functionality
+        const loadMoreContainer = document.createElement('div');
+        loadMoreContainer.className = 'load-more-container';
+        loadMoreContainer.style.textAlign = 'center';
+        loadMoreContainer.style.margin = '30px 0';
+
+        const loadMoreButton = document.createElement('button');
+        loadMoreButton.className = 'load-more-button';
+        loadMoreButton.textContent = 'Load More Projects';
+        loadMoreButton.style.padding = '12px 24px';
+        loadMoreButton.style.background = 'linear-gradient(135deg, rgba(32, 178, 170, 0.8), rgba(64, 224, 208, 0.8))';
+        loadMoreButton.style.color = '#fff';
+        loadMoreButton.style.border = 'none';
+        loadMoreButton.style.borderRadius = '8px';
+        loadMoreButton.style.fontSize = '1rem';
+        loadMoreButton.style.fontWeight = '600';
+        loadMoreButton.style.cursor = 'pointer';
+        loadMoreButton.style.boxShadow = '0 4px 12px rgba(64, 224, 208, 0.4)';
+        loadMoreButton.style.transition = 'all 0.3s ease';
+
+        // Update load more button style for light mode
+        if (body.classList.contains('light-mode')) {
+            loadMoreButton.style.background = 'linear-gradient(135deg, rgba(255, 140, 0, 0.8), rgba(255, 69, 0, 0.8))';
+            loadMoreButton.style.boxShadow = '0 4px 12px rgba(255, 140, 0, 0.4)';
+        }
+
+        // Update button style when theme changes
+        darkModeButton.addEventListener('click', () => {
+            if (body.classList.contains('light-mode')) {
+                loadMoreButton.style.background = 'linear-gradient(135deg, rgba(255, 140, 0, 0.8), rgba(255, 69, 0, 0.8))';
+                loadMoreButton.style.boxShadow = '0 4px 12px rgba(255, 140, 0, 0.4)';
+            } else {
+                loadMoreButton.style.background = 'linear-gradient(135deg, rgba(32, 178, 170, 0.8), rgba(64, 224, 208, 0.8))';
+                loadMoreButton.style.boxShadow = '0 4px 12px rgba(64, 224, 208, 0.4)';
+            }
+        });
+
+        loadMoreContainer.appendChild(loadMoreButton);
+        document.querySelector('.projects-grid').after(loadMoreContainer);
+
+        // Add hover effect to load more button
+        loadMoreButton.addEventListener('mouseenter', () => {
+            loadMoreButton.style.transform = 'translateY(-3px)';
+            if (body.classList.contains('light-mode')) {
+                loadMoreButton.style.boxShadow = '0 7px 15px rgba(255, 140, 0, 0.6)';
+            } else {
+                loadMoreButton.style.boxShadow = '0 7px 15px rgba(64, 224, 208, 0.6)';
+            }
+        });
+
+        loadMoreButton.addEventListener('mouseleave', () => {
+            loadMoreButton.style.transform = 'translateY(0)';
+            if (body.classList.contains('light-mode')) {
+                loadMoreButton.style.boxShadow = '0 4px 12px rgba(255, 140, 0, 0.4)';
+            } else {
+                loadMoreButton.style.boxShadow = '0 4px 12px rgba(64, 224, 208, 0.4)';
+            }
+        });
+
+        // Function to create new project card
+        function createProjectCard(project) {
+            const card = document.createElement('div');
+            card.className = 'project-card';
+            card.setAttribute('data-category', project.categories);
+            
+            if (body.classList.contains('light-mode')) {
+                card.classList.add('light-mode');
+            }
+            
+            card.innerHTML = `
+                <img src="${project.image}" alt="${project.title}" class="project-image" />
+                <div class="project-content">
+                    <h3 class="project-title">${project.title}</h3>
+                    <p class="project-description">${project.description}</p>
+                    <div class="project-tags">
+                        ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
+                    </div>
+                    <div class="project-links">
+                        ${project.demo ? `<a href="${project.demo}" class="project-link">View Demo</a>` : ''}
+                        ${project.source ? `<a href="${project.source}" class="project-link">Source Code</a>` : ''}
+                        ${project.caseStudy ? `<a href="${project.caseStudy}" class="project-link">Case Study</a>` : ''}
+                    </div>
+                </div>
+            `;
+            
+            return card;
+        }
+        
+        // Sample new projects data
+        const newProjects = [
+            {
+                title: "Portfolio Website",
+                description: "A modern portfolio website built with HTML, CSS, and JavaScript with smooth animations and dark/light mode.",
+                image: "/api/placeholder/400/320",
+                categories: "web design",
+                tags: ["HTML", "CSS", "JavaScript"],
+                demo: "#",
+                source: "#"
+            },
+            {
+                title: "Weather Application",
+                description: "A weather app that shows current conditions and forecasts using geolocation and weather API data.",
+                image: "/api/placeholder/400/320",
+                categories: "web mobile",
+                tags: ["React", "API Integration", "Geolocation"],
+                demo: "#",
+                source: "#"
+            },
+            {
+                title: "Image Recognition Tool",
+                description: "An AI-powered tool that can identify objects and scenes in images with high accuracy.",
+                image: "/api/placeholder/400/320",
+                categories: "ai",
+                tags: ["Python", "Computer Vision", "Machine Learning"],
+                demo: "#",
+                caseStudy: "#"
+            }
+        ];
+        
+        // Load more button functionality
+        let projectsLoaded = false;
+        loadMoreButton.addEventListener('click', function() {
+            if (!projectsLoaded) {
+                const projectsGrid = document.querySelector('.projects-grid');
+                
+                newProjects.forEach((project, index) => {
+                    const newCard = createProjectCard(project);
+                    newCard.style.opacity = '0';
+                    newCard.style.transform = 'translateY(30px)';
+                    projectsGrid.appendChild(newCard);
+                    
+                    // Staggered animation
+                    setTimeout(() => {
+                        newCard.style.opacity = '1';
+                        newCard.style.transform = 'translateY(0)';
+                        newCard.style.transition = 'all 0.5s ease';
+                    }, 100 * index);
+                });
+                
+                projectsLoaded = true;
+                loadMoreButton.textContent = 'All Projects Loaded';
+                loadMoreButton.style.opacity = '0.7';
+                loadMoreButton.style.cursor = 'default';
+                
+                // Update filter to include new cards
+                const updatedCards = document.querySelectorAll('.project-card');
+                projectCards.forEach = Array.from(updatedCards);
+            }
+        });
+
+        // Add a back-to-top button
+        const backToTopBtn = document.createElement('button');
+        backToTopBtn.className = 'back-to-top';
+        backToTopBtn.innerHTML = '↑';
+        backToTopBtn.style.position = 'fixed';
+        backToTopBtn.style.bottom = '30px';
+        backToTopBtn.style.right = '30px';
+        backToTopBtn.style.width = '50px';
+        backToTopBtn.style.height = '50px';
+        backToTopBtn.style.borderRadius = '50%';
+        backToTopBtn.style.background = 'linear-gradient(135deg, rgba(32, 178, 170, 0.8), rgba(64, 224, 208, 0.8))';
+        backToTopBtn.style.color = '#fff';
+        backToTopBtn.style.border = 'none';
+        backToTopBtn.style.fontSize = '1.5rem';
+        backToTopBtn.style.cursor = 'pointer';
+        backToTopBtn.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.3)';
+        backToTopBtn.style.opacity = '0';
+        backToTopBtn.style.transform = 'translateY(20px)';
+        backToTopBtn.style.transition = 'all 0.3s ease';
+        document.body.appendChild(backToTopBtn);
+
+        // Show/hide back-to-top button based on scroll position
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.style.opacity = '1';
+                backToTopBtn.style.transform = 'translateY(0)';
+            } else {
+                backToTopBtn.style.opacity = '0';
+                backToTopBtn.style.transform = 'translateY(20px)';
+            }
+        });
+
+        // Scroll to top when button is clicked
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+</script>
+</body>
+</html>

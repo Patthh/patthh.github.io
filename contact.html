@@ -224,6 +224,8 @@
 		.glowing-letters {
 			display: inline-block;
 			position: relative;
+			width: 100%;
+			text-align: center;
 		}
 		
 		.glowing-letters span {
@@ -361,6 +363,15 @@
 			}
 		}
 		
+		/* Improved mobile responsiveness */
+		.profile-name {
+			width: 100%;
+			text-align: center;
+			font-size: 2.5rem;
+			margin-bottom: 1.5rem;
+			overflow: hidden;
+		}
+		
 		@media (max-width: 768px) {
 			.connect-title {
 				font-size: 1.8rem;
@@ -378,6 +389,14 @@
 				width: 50px;
 				height: 50px;
 				font-size: 1.3rem;
+			}
+			
+			.profile-name {
+				font-size: 2rem;
+			}
+			
+			.glowing-letters {
+				font-size: 1.8rem;
 			}
 		}
 		
@@ -398,6 +417,33 @@
 				width: 45px;
 				height: 45px;
 				font-size: 1.2rem;
+			}
+			
+			.profile-name {
+				font-size: 1.7rem;
+			}
+			
+			.glowing-letters {
+				font-size: 1.5rem;
+				width: 100%;
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+			}
+			
+			.glowing-letters span {
+				display: inline-block;
+				margin: 0 2px;
+			}
+		}
+		
+		@media (max-width: 360px) {
+			.profile-name {
+				font-size: 1.5rem;
+			}
+			
+			.glowing-letters {
+				font-size: 1.3rem;
 			}
 		}
 	</style>
