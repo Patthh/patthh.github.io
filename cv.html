@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patthadon Racksawongsakul - CV</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            animation: slideUp 0.8s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .name {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .title {
+            font-size: 1.3em;
+            font-weight: 300;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.1);
+            padding: 8px 15px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .contact-item:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            animation: fadeIn 0.6s ease-out forwards;
+            opacity: 0;
+        }
+        
+        .section:nth-child(1) { animation-delay: 0.2s; }
+        .section:nth-child(2) { animation-delay: 0.4s; }
+        .section:nth-child(3) { animation-delay: 0.6s; }
+        .section:nth-child(4) { animation-delay: 0.8s; }
+        .section:nth-child(5) { animation-delay: 1.0s; }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .section-title {
+            font-size: 1.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3498db;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #e74c3c;
+            border-radius: 2px;
+        }
+        
+        .profile-text {
+            font-size: 1.1em;
+            line-height: 1.7;
+            color: #555;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .experience-item, .education-item {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #27ae60;
+            transition: all 0.3s ease;
+        }
+        
+        .experience-item:hover, .education-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .job-header, .edu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .job-title, .degree {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .company, .school {
+            font-weight: 500;
+            color: #3498db;
+            margin-top: 5px;
+        }
+        
+        .date {
+            background: #3498db;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+        
+        .job-description {
+            margin-top: 15px;
+        }
+        
+        .job-description li {
+            margin-bottom: 8px;
+            color: #555;
+            padding-left: 5px;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .skill-category {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .skill-category h4 {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+        
+        .skill-tag {
+            background: rgba(255,255,255,0.2);
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            backdrop-filter: blur(10px);
+        }
+        
+        .academic-info {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .level-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .level-badge {
+            background: white;
+            color: #e91e63;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        
+        .progress-info {
+            background: white;
+            color: #333;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            .contact-info {
+                gap: 15px;
+            }
+            
+            .contact-item {
+                font-size: 0.9em;
+                padding: 6px 12px;
+            }
+            
+            .name {
+                font-size: 2em;
+            }
+            
+            .job-header, .edu-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .date {
+                margin-top: 10px;
+            }
+            
+            .level-info {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1 class="name">PATTHADON RACKSAWONGSAKUL</h1>
+                <p class="title">Software Engineer</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span>📧</span>
+                        <span>rpatdon@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>📱</span>
+                        <span>064-172-4493</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>📍</span>
+                        <span>Lat Krabang, Bangkok</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <h2 class="section-title">Professional Profile</h2>
+                <p class="profile-text">
+                    Dedicated software engineering student at 42 Bangkok with proven experience in C, Python, and web technologies. Currently at Level 5.11 in the prestigious 42 curriculum, demonstrating strong problem-solving abilities and commitment to excellence. Experienced in tutoring programming concepts and developing practical applications including OCR systems and database management. Passionate about algorithm design, system programming, and creating efficient solutions to complex technical challenges.
+                </p>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Technical Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h4>Programming Languages</h4>
+                        <div class="skill-list">
+                            <span class="skill-tag">C (Advanced)</span>
+                            <span class="skill-tag">C++</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">Lua Script</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Web Technologies</h4>
+                        <div class="skill-list">
+                            <span class="skill-tag">HTML</span>
+                            <span class="skill-tag">CSS</span>
+                            <span class="skill-tag">HTTP Protocol</span>
+                            <span class="skill-tag">MVC Architecture</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>System & Tools</h4>
+                        <div class="skill-list">
+                            <span class="skill-tag">Unix/Linux</span>
+                            <span class="skill-tag">MongoDB</span>
+                            <span class="skill-tag">OCR Systems</span>
+                            <span class="skill-tag">Network Administration</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Core Competencies</h4>
+                        <div class="skill-list">
+                            <span class="skill-tag">Algorithms & AI</span>
+                            <span class="skill-tag">Graphics Programming</span>
+                            <span class="skill-tag">System Programming</span>
+                            <span class="skill-tag">Data Analysis</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Professional Experience</h2>
+                
+                <div class="experience-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Programming Tutor - C Pisciner</div>
+                            <div class="company">42 Bangkok</div>
+                        </div>
+                        <div class="date">Nov 2023 - Present</div>
+                    </div>
+                    <ul class="job-description">
+                        <li>Provide comprehensive guidance to piscine participants on C language projects and programming fundamentals</li>
+                        <li>Deliver public presentations to disseminate essential programming concepts and best practices</li>
+                        <li>Foster collaborative learning environments among diverse groups of aspiring programmers</li>
+                        <li>Support educational institution management through mentoring and peer-to-peer learning facilitation</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Data Analyst & Programmer</div>
+                            <div class="company">Wetrust GPS Company</div>
+                        </div>
+                        <div class="date">Dec 2022 - Feb 2023</div>
+                    </div>
+                    <ul class="job-description">
+                        <li>Conducted comprehensive database administration and performed complex data analysis tasks</li>
+                        <li>Developed an innovative OCR project utilizing Python and JavaScript to extract text from images and store data in MongoDB</li>
+                        <li>Provided personal programming consultation to company leadership on technical strategy and implementation</li>
+                        <li>Optimized database performance and implemented efficient data processing workflows</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Discovery Piscine Tutor</div>
+                            <div class="company">42 Bangkok</div>
+                        </div>
+                        <div class="date">Sep - Oct 2023</div>
+                    </div>
+                    <ul class="job-description">
+                        <li>Delivered HTML, CSS, and JavaScript tutoring to junior high school students</li>
+                        <li>Enhanced student social engagement and collaborative learning experiences</li>
+                        <li>Collaborated with students on practical, real-world web development projects</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Education & Academic Excellence</h2>
+                
+                <div class="academic-info">
+                    <div class="level-info">
+                        <div class="level-badge">42 Bangkok - Level 5.11</div>
+                        <div class="progress-info">Common Core: 57% Complete</div>
+                    </div>
+                    <p style="color: white; text-align: center; margin-top: 10px;">
+                        <strong>Current Status:</strong> Advanced Common Core Student | Selected: June 2023 | Started: August 2023
+                    </p>
+                </div>
+
+                <div class="education-item">
+                    <div class="edu-header">
+                        <div>
+                            <div class="degree">Programming School - Software Engineering</div>
+                            <div class="school">42 Bangkok</div>
+                        </div>
+                        <div class="date">2023 - Present</div>
+                    </div>
+                    <p>Intensive peer-to-peer learning program focusing on practical software engineering skills. Completed 18+ major projects including advanced C/C++ programming, graphics programming (fractals, 3D ray-casting), system programming (minishell, philosophers), and network administration.</p>
+                </div>
+
+                <div class="education-item">
+                    <div class="edu-header">
+                        <div>
+                            <div class="degree">Bachelor of Electrical Engineering & Computer Systems</div>
+                            <div class="school">Silpakorn University</div>
+                        </div>
+                        <div class="date">2020-2023</div>
+                    </div>
+                    <p>Strong foundation in electrical engineering principles, computer systems architecture, and mathematical problem-solving. Developed analytical thinking and systematic approach to complex technical challenges.</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Key Project Achievements</h2>
+                <div class="experience-item">
+                    <h4 style="color: #2c3e50; margin-bottom: 15px;">Notable 42 Projects (Recent)</h4>
+                    <ul class="job-description">
+                        <li><strong>cub3d (280H):</strong> Built a 3D ray-casting game engine inspired by classic FPS games, demonstrating advanced graphics programming and algorithm optimization</li>
+                        <li><strong>minishell (210H):</strong> Developed a complete Unix shell implementation with process management, pipe handling, and built-in commands</li>
+                        <li><strong>Philosophers (70H):</strong> Implemented concurrent programming solution addressing the dining philosophers problem with multithreading and synchronization</li>
+                        <li><strong>C++ Modules 00-04:</strong> Mastered object-oriented programming concepts including inheritance, polymorphism, and template programming</li>
+                        <li><strong>OCR Data Processing System:</strong> Created production-ready system for automated text extraction and database integration at Wetrust GPS Company</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
