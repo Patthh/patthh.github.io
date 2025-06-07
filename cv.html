@@ -291,18 +291,73 @@
             font-weight: 500;
         }
         
+        .language-section {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .language-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: #f8f9fa;
+            padding: 15px 25px;
+            border-radius: 25px;
+            border-left: 4px solid #27ae60;
+            min-width: 200px;
+            justify-content: space-between;
+        }
+        
+        .language-name {
+            font-weight: 600;
+            font-size: 1.1em;
+            color: #2c3e50;
+        }
+        
+        .language-level {
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-weight: 500;
+            font-size: 0.9em;
+        }
+        
+        .language-level.native {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .language-level.fluent {
+            background: #3498db;
+            color: white;
+        }
+        
         @media (max-width: 768px) {
             .contact-info {
-                gap: 15px;
+                gap: 10px;
             }
             
             .contact-item {
-                font-size: 0.9em;
-                padding: 6px 12px;
+                font-size: 0.8em;
+                padding: 6px 10px;
+                min-width: 0;
             }
             
             .name {
-                font-size: 2em;
+                font-size: 1.8em;
+            }
+            
+            .title {
+                font-size: 1.1em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .section {
+                margin-bottom: 30px;
             }
             
             .job-header, .edu-header {
@@ -318,6 +373,97 @@
                 flex-direction: column;
                 gap: 10px;
                 text-align: center;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .skill-category {
+                padding: 15px;
+            }
+            
+            .skill-tag {
+                font-size: 0.8em;
+                padding: 4px 8px;
+            }
+            
+            .language-section {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .language-item {
+                min-width: auto;
+                padding: 12px 20px;
+            }
+            
+            .section-title {
+                font-size: 1.3em;
+            }
+            
+            .profile-text {
+                font-size: 1em;
+                padding: 20px;
+            }
+            
+            .experience-item, .education-item {
+                padding: 15px;
+            }
+            
+            .job-title, .degree {
+                font-size: 1.1em;
+            }
+            
+            .academic-info {
+                padding: 15px;
+            }
+            
+            .level-badge, .progress-info {
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .header {
+                padding: 30px 20px;
+            }
+            
+            .name {
+                font-size: 1.6em;
+            }
+            
+            .contact-info {
+                gap: 8px;
+            }
+            
+            .contact-item {
+                font-size: 0.75em;
+                padding: 5px 8px;
+            }
+            
+            .content {
+                padding: 15px;
+            }
+            
+            .skill-tag {
+                font-size: 0.75em;
+                padding: 3px 6px;
+            }
+            
+            .language-name {
+                font-size: 1em;
+            }
+            
+            .language-level {
+                font-size: 0.8em;
+                padding: 4px 10px;
             }
         }
     </style>
@@ -340,6 +486,10 @@
                     <div class="contact-item">
                         <span>📍</span>
                         <span>Lat Krabang, Bangkok</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>🔗</span>
+                        <span>github.com/Patthh</span>
                     </div>
                 </div>
             </div>
@@ -397,24 +547,60 @@
             </div>
 
             <div class="section">
+                <h2 class="section-title">Soft Skills & Professional Competencies</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h4>Communication & Leadership</h4>
+                        <div class="skill-list">
+                            <span class="skill-tag">Cross-Cultural Communication</span>
+                            <span class="skill-tag">Technical Communication</span>
+                            <span class="skill-tag">Documentation & Technical Writing</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Problem-Solving & Analysis</h4>
+                        <div class="skill-list">
+                            <span class="skill-tag">Problem-Solving & Analytical Thinking</span>
+                            <span class="skill-tag">Code Review & Peer Programming</span>
+                            <span class="skill-tag">Continuous Learning Mindset</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Collaboration & Adaptability</h4>
+                        <div class="skill-list">
+                            <span class="skill-tag">Collaboration & Teamwork</span>
+                            <span class="skill-tag">Adaptability</span>
+                            <span class="skill-tag">Self-Directed Learning</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Project Management</h4>
+                        <div class="skill-list">
+                            <span class="skill-tag">Time Management</span>
+                            <span class="skill-tag">Multi-tasking</span>
+                            <span class="skill-tag">Independent Work</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Languages</h2>
+                <div class="language-section">
+                    <div class="language-item">
+                        <span class="language-name">Thai</span>
+                        <span class="language-level native">Native</span>
+                    </div>
+                    <div class="language-item">
+                        <span class="language-name">English</span>
+                        <span class="language-level fluent">Fluent</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
                 <h2 class="section-title">Professional Experience</h2>
                 
-                <div class="experience-item">
-                    <div class="job-header">
-                        <div>
-                            <div class="job-title">Programming Tutor - C Pisciner</div>
-                            <div class="company">42 Bangkok</div>
-                        </div>
-                        <div class="date">Nov 2023 - Present</div>
-                    </div>
-                    <ul class="job-description">
-                        <li>Provide comprehensive guidance to piscine participants on C language projects and programming fundamentals</li>
-                        <li>Deliver public presentations to disseminate essential programming concepts and best practices</li>
-                        <li>Foster collaborative learning environments among diverse groups of aspiring programmers</li>
-                        <li>Support educational institution management through mentoring and peer-to-peer learning facilitation</li>
-                    </ul>
-                </div>
-
                 <div class="experience-item">
                     <div class="job-header">
                         <div>
@@ -434,15 +620,15 @@
                 <div class="experience-item">
                     <div class="job-header">
                         <div>
-                            <div class="job-title">Discovery Piscine Tutor</div>
+                            <div class="job-title">Programming Tutor & Mentor</div>
                             <div class="company">42 Bangkok</div>
                         </div>
-                        <div class="date">Sep - Oct 2023</div>
+                        <div class="date">Sep 2023 - Present</div>
                     </div>
                     <ul class="job-description">
-                        <li>Delivered HTML, CSS, and JavaScript tutoring to junior high school students</li>
-                        <li>Enhanced student social engagement and collaborative learning experiences</li>
-                        <li>Collaborated with students on practical, real-world web development projects</li>
+                        <li>Guide students through C programming fundamentals and advanced concepts in peer-to-peer learning environment</li>
+                        <li>Deliver technical presentations on programming best practices to diverse international student groups</li>
+                        <li>Mentor junior high school students in web development (HTML, CSS, JavaScript) during Discovery Piscine programs</li>
                     </ul>
                 </div>
             </div>
