@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure CV Access</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .cv-button {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+            text-decoration: none;
+            display: inline-block;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cv-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(52, 152, 219, 0.4);
+        }
+
+        .cv-button:active {
+            transform: translateY(0);
+        }
+
+        .cv-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .cv-button:hover::before {
+            left: 100%;
+        }
+
+        .access-code-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #3498db;
+        }
+
+        .access-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            margin: 10px 0;
+            transition: border-color 0.3s ease;
+        }
+
+        .access-input:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .verify-btn {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+
+        .verify-btn:hover {
+            background: #219a52;
+        }
+
+        .error {
+            color: #e74c3c;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .success {
+            color: #27ae60;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .info-text {
+            font-size: 14px;
+            color: #666;
+            margin: 15px 0;
+            line-height: 1.5;
+        }
+
+        .security-note {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 13px;
+            color: #856404;
+        }
+
+        .loading {
+            display: none;
+            color: #3498db;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .spinner {
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #3498db;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>📄 CV Access Portal</h2>
+        <p class="info-text">
+            This CV is protected for privacy and professional discretion. 
+            Please enter the access code provided to you.
+        </p>
+
+        <!-- Method 1: Direct Private Repo Access -->
+        <div class="access-code-section">
+            <h3>🔐 Secure Access</h3>
+            <input type="password" id="accessCode" class="access-input" placeholder="Enter access code">
+            <button onclick="verifyAndDownload()" class="verify-btn">Verify & Download CV</button>
+            <div id="message"></div>
+            <div id="loading" class="loading">
+                <div class="spinner"></div>
+                Preparing secure download...
+            </div>
+        </div>
+
+        <!-- Method 2: Email Request -->
+        <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
+            <h3>📧 Alternative Access</h3>
+            <p class="info-text">
+                For immediate access, you can request the CV directly via email:
+            </p>
+            <a href="mailto:rpatdon@gmail.com?subject=CV Request&body=Hello Patthadon,%0A%0AI would like to request access to your CV for [Company/Position Name].%0A%0AThank you." 
+               class="cv-button">
+                📧 Request CV via Email
+            </a>
+        </div>
+
+        <div class="security-note">
+            <strong>🛡️ Privacy Notice:</strong> This CV contains personal information and is shared selectively. 
+            By accessing this document, you agree to use it solely for professional evaluation purposes.
+        </div>
+    </div>
+
+    <script>
+        // Configuration - You'll need to update these
+        const GITHUB_CONFIG = {
+            owner: 'patthh', // Your GitHub username
+            repo: 'cv', // Your private repo name
+            path: 'CV.pdf', // Path to your CV in the repo
+            token: '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' // Your GitHub token (keep this secure!)
+        };
+
+        // Simple access codes (you can make this more sophisticated)
+        const validCodes = [
+            '2025',
+			'TEST'
+        ];
+
+        async function verifyAndDownload() {
+            const code = document.getElementById('accessCode').value.trim().toUpperCase();
+            const messageDiv = document.getElementById('message');
+            const loadingDiv = document.getElementById('loading');
+
+            if (!code) {
+                messageDiv.innerHTML = '<div class="error">Please enter an access code</div>';
+                return;
+            }
+
+            if (!validCodes.includes(code)) {
+                messageDiv.innerHTML = '<div class="error">Invalid access code. Please contact rpatdon@gmail.com for access.</div>';
+                return;
+            }
+
+            // Show loading
+            loadingDiv.style.display = 'block';
+            messageDiv.innerHTML = '';
+
+            try {
+                // Method 1: Direct GitHub API access (requires CORS proxy or backend)
+                await downloadFromGitHub();
+                
+            } catch (error) {
+                console.error('Download error:', error);
+                loadingDiv.style.display = 'none';
+                messageDiv.innerHTML = '<div class="error">Download failed. Please try the email option below.</div>';
+            }
+        }
+
+        async function downloadFromGitHub() {
+            // Note: This requires a CORS proxy or backend service
+            // For production, you'd want to implement this server-side
+            
+            const apiUrl = `https://api.github.com/repos/${GITHUB_CONFIG.owner}/${GITHUB_CONFIG.repo}/contents/${GITHUB_CONFIG.path}`;
+            
+            const response = await fetch(apiUrl, {
+                headers: {
+                    'Authorization': `token ${GITHUB_CONFIG.token}`,
+                    'Accept': 'application/vnd.github.v3+json'
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch CV');
+            }
+
+            const data = await response.json();
+            
+            // Decode base64 content
+            const content = atob(data.content);
+            const blob = new Blob([content], { type: 'application/pdf' });
+            
+            // Create download link
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'CV.pdf';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('message').innerHTML = '<div class="success">✅ CV downloaded successfully!</div>';
+        }
+
+        // Alternative: Redirect to secure link
+        function alternativeDownload() {
+            // This could redirect to a server endpoint that handles the secure download
+            window.open('https://your-server.com/api/download-cv?token=' + btoa(Date.now()), '_blank');
+        }
+
+        // Enter key support
+        document.getElementById('accessCode').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                verifyAndDownload();
+            }
+        });
+    </script>
+</body>
+</html>
