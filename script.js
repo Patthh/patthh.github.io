@@ -1,3 +1,24 @@
+function copyEmail() {
+    const email = 'rpatdon@gmail.com';
+    navigator.clipboard.writeText(email).then(() => {
+        const successMessage = document.getElementById('copySuccess');
+        successMessage.classList.add('show');
+        setTimeout(() => {
+            successMessage.classList.remove('show');
+        }, 2000);
+    });
+}
+
+function downloadPDF() {
+    const link = document.createElement('a');
+    link.href = 'https://github.com/Patthh/cv/raw/main/CV.pdf';
+    link.download = 'Patthadon_Racksawongsakul_CV.pdf';
+    link.target = '_blank';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
 function toggleMenu() {
     const navbarLinks = document.querySelector('.navbar-links');
     const navbarToggle = document.querySelector('.navbar-toggle');
