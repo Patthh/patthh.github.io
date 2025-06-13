@@ -100,22 +100,22 @@ if (document.readyState === 'loading') {
     loadTheme();
 }
 
-function toggleDarkMode() {
-    const body = document.body;
-    const navbar = document.querySelector('.navbar');
-    const container = document.querySelector('.profile-container');
-    const button = document.querySelector('.dark-mode-button');
+// function toggleDarkMode() {
+//     const body = document.body;
+//     const navbar = document.querySelector('.navbar');
+//     const container = document.querySelector('.profile-container');
+//     const button = document.querySelector('.dark-mode-button');
     
-    body.classList.toggle('light-mode');
-    navbar.classList.toggle('light-mode');
-    container.classList.toggle('light-mode');
+//     body.classList.toggle('light-mode');
+//     navbar.classList.toggle('light-mode');
+//     container.classList.toggle('light-mode');
     
-    if (body.classList.contains('light-mode')) {
-        button.innerHTML = '<span class="mode-icon">🌙</span> Dark';
-    } else {
-        button.innerHTML = '<span class="mode-icon">☀️</span> Light';
-    }
-}
+//     if (body.classList.contains('light-mode')) {
+//         button.innerHTML = '<span class="mode-icon">🌙</span> Dark';
+//     } else {
+//         button.innerHTML = '<span class="mode-icon">☀️</span> Light';
+//     }
+// }
 
 function toggleMenu() {
     const navbarLinks = document.querySelector('.navbar-links');
@@ -132,22 +132,22 @@ function toggleMenu() {
     navbarToggle.classList.toggle('active');
 }
 
-function toggleDarkMode() {
-    const body = document.body;
-    const navbar = document.querySelector('.navbar');
-    const projectsContainer = document.querySelector('.projects-container');
-    const button = document.querySelector('.dark-mode-button');
+// function toggleDarkMode() {
+//     const body = document.body;
+//     const navbar = document.querySelector('.navbar');
+//     const projectsContainer = document.querySelector('.projects-container');
+//     const button = document.querySelector('.dark-mode-button');
     
-    body.classList.toggle('light-mode');
-    navbar.classList.toggle('light-mode');
-    projectsContainer.classList.toggle('light-mode');
+//     body.classList.toggle('light-mode');
+//     navbar.classList.toggle('light-mode');
+//     projectsContainer.classList.toggle('light-mode');
     
-    if (body.classList.contains('light-mode')) {
-        button.innerHTML = '<span class="mode-icon">🌙</span> Dark';
-    } else {
-        button.innerHTML = '<span class="mode-icon">☀️</span> Light';
-    }
-}
+//     if (body.classList.contains('light-mode')) {
+//         button.innerHTML = '<span class="mode-icon">🌙</span> Dark';
+//     } else {
+//         button.innerHTML = '<span class="mode-icon">☀️</span> Light';
+//     }
+// }
 
 function createParticles() {
     const particlesContainer = document.getElementById('particles');
@@ -245,24 +245,24 @@ function animateCounter(element, finalValue) {
 }
 
 // Enhanced dark mode toggle with local storage
-function toggleDarkMode() {
-    const body = document.body;
-    const navbar = document.querySelector('.navbar');
-    const projectsContainer = document.querySelector('.projects-container');
-    const button = document.querySelector('.dark-mode-button');
+// function toggleDarkMode() {
+//     const body = document.body;
+//     const navbar = document.querySelector('.navbar');
+//     const projectsContainer = document.querySelector('.projects-container');
+//     const button = document.querySelector('.dark-mode-button');
     
-    body.classList.toggle('light-mode');
-    navbar.classList.toggle('light-mode');
-    projectsContainer.classList.toggle('light-mode');
+//     body.classList.toggle('light-mode');
+//     navbar.classList.toggle('light-mode');
+//     projectsContainer.classList.toggle('light-mode');
     
-    if (body.classList.contains('light-mode')) {
-        button.innerHTML = '<span class="mode-icon">🌙</span> Dark';
-        localStorage.setItem('theme', 'light');
-    } else {
-        button.innerHTML = '<span class="mode-icon">☀️</span> Light';
-        localStorage.setItem('theme', 'dark');
-    }
-}
+//     if (body.classList.contains('light-mode')) {
+//         button.innerHTML = '<span class="mode-icon">🌙</span> Dark';
+//         localStorage.setItem('theme', 'light');
+//     } else {
+//         button.innerHTML = '<span class="mode-icon">☀️</span> Light';
+//         localStorage.setItem('theme', 'dark');
+//     }
+// }
 
 // Smooth scroll for navigation
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
