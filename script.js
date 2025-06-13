@@ -19,12 +19,12 @@ function downloadPDF() {
     document.body.removeChild(link);
 }
 
-function toggleMenu() {
-    const navbarLinks = document.querySelector('.navbar-links');
-    const navbarToggle = document.querySelector('.navbar-toggle');
-    navbarLinks.classList.toggle('active');
-    navbarToggle.classList.toggle('active');
-}
+// function toggleMenu() {
+//     const navbarLinks = document.querySelector('.navbar-links');
+//     const navbarToggle = document.querySelector('.navbar-toggle');
+//     navbarLinks.classList.toggle('active');
+//     navbarToggle.classList.toggle('active');
+// }
 
 function toggleDarkMode() {
     const body = document.body;
@@ -45,50 +45,50 @@ function toggleDarkMode() {
     }
 }
 
-function createParticles() {
-    const particlesContainer = document.getElementById('particles');
-    const particleCount = 50;
+// function createParticles() {
+//     const particlesContainer = document.getElementById('particles');
+//     const particleCount = 50;
     
-    for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.classList.add('particle');
+//     for (let i = 0; i < particleCount; i++) {
+//         const particle = document.createElement('div');
+//         particle.classList.add('particle');
         
-        const posX = Math.random() * window.innerWidth;
-        const posY = Math.random() * window.innerHeight;
+//         const posX = Math.random() * window.innerWidth;
+//         const posY = Math.random() * window.innerHeight;
         
-        const size = Math.random() * 3 + 1;
-        const opacity = Math.random() * 0.5 + 0.1;
+//         const size = Math.random() * 3 + 1;
+//         const opacity = Math.random() * 0.5 + 0.1;
         
-        particle.style.left = `${posX}px`;
-        particle.style.top = `${posY}px`;
-        particle.style.width = `${size}px`;
-        particle.style.height = `${size}px`;
-        particle.style.opacity = opacity;
+//         particle.style.left = `${posX}px`;
+//         particle.style.top = `${posY}px`;
+//         particle.style.width = `${size}px`;
+//         particle.style.height = `${size}px`;
+//         particle.style.opacity = opacity;
         
-        const duration = Math.random() * 20 + 10;
-        particle.style.animation = `float ${duration}s infinite alternate ease-in-out`;
-        particle.style.animationDelay = `${Math.random() * 5}s`;
+//         const duration = Math.random() * 20 + 10;
+//         particle.style.animation = `float ${duration}s infinite alternate ease-in-out`;
+//         particle.style.animationDelay = `${Math.random() * 5}s`;
         
-        particlesContainer.appendChild(particle);
-    }
-}
+//         particlesContainer.appendChild(particle);
+//     }
+// }
 
-function loadTheme() {
-    const savedTheme = localStorage.getItem('theme');
-    const body = document.body;
-    const navbar = document.querySelector('.navbar');
-    const profileContainer = document.querySelector('.profile-container');
-    const button = document.querySelector('.dark-mode-button');
+// function loadTheme() {
+//     const savedTheme = localStorage.getItem('theme');
+//     const body = document.body;
+//     const navbar = document.querySelector('.navbar');
+//     const profileContainer = document.querySelector('.profile-container');
+//     const button = document.querySelector('.dark-mode-button');
     
-    if (savedTheme === 'light') {
-        body.classList.add('light-mode');
-        navbar.classList.add('light-mode');
-        profileContainer.classList.add('light-mode');
-        button.innerHTML = '<span class="mode-icon">🌙</span> Dark';
-    } else {
-        button.innerHTML = '<span class="mode-icon">☀️</span> Light';
-    }
-}
+//     if (savedTheme === 'light') {
+//         body.classList.add('light-mode');
+//         navbar.classList.add('light-mode');
+//         profileContainer.classList.add('light-mode');
+//         button.innerHTML = '<span class="mode-icon">🌙</span> Dark';
+//     } else {
+//         button.innerHTML = '<span class="mode-icon">☀️</span> Light';
+//     }
+// }
 
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
@@ -117,20 +117,20 @@ if (document.readyState === 'loading') {
 //     }
 // }
 
-function toggleMenu() {
-    const navbarLinks = document.querySelector('.navbar-links');
-    const toggle = document.querySelector('.navbar-toggle');
+// function toggleMenu() {
+//     const navbarLinks = document.querySelector('.navbar-links');
+//     const toggle = document.querySelector('.navbar-toggle');
     
-    navbarLinks.classList.toggle('active');
-    toggle.classList.toggle('active');
-}
+//     navbarLinks.classList.toggle('active');
+//     toggle.classList.toggle('active');
+// }
 
-function toggleMenu() {
-    const navbarLinks = document.querySelector('.navbar-links');
-    const navbarToggle = document.querySelector('.navbar-toggle');
-    navbarLinks.classList.toggle('active');
-    navbarToggle.classList.toggle('active');
-}
+// function toggleMenu() {
+//     const navbarLinks = document.querySelector('.navbar-links');
+//     const navbarToggle = document.querySelector('.navbar-toggle');
+//     navbarLinks.classList.toggle('active');
+//     navbarToggle.classList.toggle('active');
+// }
 
 // function toggleDarkMode() {
 //     const body = document.body;
