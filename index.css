@@ -1,0 +1,132 @@
+.glowing-letters {
+	display: inline-block;
+	position: relative;
+	width: 100%;
+	text-align: center;
+}
+
+.glowing-letters span {
+	display: inline-block;
+	animation: glow 2s infinite alternate;
+	animation-delay: calc(var(--i) * 0.1s);
+	transition: all 0.3s ease;
+}
+
+@keyframes glow {
+	0% {
+		color: #40E0D0;
+		text-shadow: 0 0 10px rgba(64, 224, 208, 0.5);
+		transform: translateY(0);
+	}
+	100% {
+		color: #fff;
+		text-shadow: 0 0 20px rgba(64, 224, 208, 1);
+		transform: translateY(-5px);
+	}
+}
+
+/* Animation for light mode */
+@keyframes glowLight {
+	0% {
+		color: #FF8C00;
+		text-shadow: 0 0 10px rgba(255, 140, 0, 0.5);
+		transform: translateY(0);
+	}
+	100% {
+		color: #FF4500;
+		text-shadow: 0 0 20px rgba(255, 140, 0, 1);
+		transform: translateY(-5px);
+	}
+}
+
+/* Animation for transitioning back to dark mode */
+@keyframes glowDark {
+	0% {
+		color: #40E0D0;
+		text-shadow: 0 0 10px rgba(64, 224, 208, 0.5);
+		transform: translateY(0);
+	}
+	100% {
+		color: #fff;
+		text-shadow: 0 0 20px rgba(64, 224, 208, 1);
+		transform: translateY(-5px);
+	}
+}
+
+/* Apply light mode animation */
+.light-mode .glowing-letters span {
+	animation: glowLight 2s infinite alternate;
+	animation-delay: calc(var(--i) * 0.1s);
+}
+
+/* Apply dark mode animation (explicit for transition back) */
+body:not(.light-mode) .glowing-letters span {
+	animation: glowDark 2s infinite alternate;
+	animation-delay: calc(var(--i) * 0.1s);
+}
+
+/* Override the original profile-name styles for better animation */
+.profile-name {
+	font-size: 2em;
+	margin-bottom: 10px;
+	letter-spacing: 0.1em;
+	position: relative;
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+}
+
+.profile-name::after {
+	content: '';
+	position: absolute;
+	width: 40%;
+	height: 3px;
+	background: linear-gradient(90deg, transparent, rgba(64, 224, 208, 0.8), transparent);
+	bottom: -10px;
+	left: 30%;
+	transition: all 0.3s ease;
+}
+
+.profile-container.light-mode .profile-name::after {
+	background: linear-gradient(90deg, transparent, rgba(255, 140, 0, 0.8), transparent);
+}
+
+/* Responsive adjustments for glowing text */
+@media (max-width: 768px) {
+	.profile-name {
+		font-size: 1.8em;
+	}
+	
+	.glowing-letters {
+		font-size: 1.8rem;
+	}
+}
+
+@media (max-width: 480px) {
+	.profile-name {
+		font-size: 1.5em;
+	}
+	
+	.glowing-letters {
+		font-size: 1.5rem;
+		width: 100%;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+	
+	.glowing-letters span {
+		display: inline-block;
+		margin: 0 1px;
+	}
+}
+
+@media (max-width: 360px) {
+	.profile-name {
+		font-size: 1.3em;
+	}
+	
+	.glowing-letters {
+		font-size: 1.3rem;
+	}
+}
