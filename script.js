@@ -11,7 +11,8 @@ function copyEmail() {
 
 function downloadPDF() {
     const link = document.createElement('a');
-    link.href = 'https://github.com/Patthh/cv/raw/main/CV.pdf';
+    // link.href = 'https://github.com/Patthh/cv/raw/main/CV.pdf';
+    link,href = 'https://raw.githubusercontent.com/Patthh/cv/main/CV.pdf';
     link.download = 'Patthadon_Racksawongsakul_CV.pdf';
     link.target = '_blank';
     document.body.appendChild(link);
